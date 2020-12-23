@@ -16,7 +16,7 @@ parser = argparse.ArgumentParser(description='Generate unique schedules from a w
 parser.add_argument('url',metavar="URL",type=str)
 parser.add_argument('-l', '--lower-bound', default=4, type=int)
 parser.add_argument('-u', '--upper-bound', default=16, type=int)
-parser.add_argument('-f', '--filter', type=str, nargs="*")
+parser.add_argument('-f', '--filter', type=str, nargs="*", default=[])
 parser.add_argument('-n', '--num', default=1, type=int)
 
 args = parser.parse_args()
@@ -33,7 +33,6 @@ def get_data(url):
     pids = [x for x in driver.execute_script("return PeopleIDs;")]
     # see PeopleNames in when2meet js console
     names = [x for x in driver.execute_script("return PeopleNames;")]
-
     people = {k:v for k,v in zip(pids, names)}
     # see AvailableAtSlot in when2meet js console
     availability = driver.execute_script("return AvailableAtSlot;")
