@@ -14,10 +14,10 @@ log.basicConfig(format='%(levelname)s:%(message)s', level=log.INFO)
 
 parser = argparse.ArgumentParser(description='Generate unique schedules from a when2meet instance')
 parser.add_argument('url',metavar="URL",type=str)
-parser.add_argument('-l', '--lower-bound', default=4, type=int)
-parser.add_argument('-u', '--upper-bound', default=16, type=int)
-parser.add_argument('-f', '--filter', type=str, nargs="*", default=[])
-parser.add_argument('-n', '--num', default=1, type=int)
+parser.add_argument('-l', '--lower-bound', default=4, type=int, help="The minimum number of time cells which a person may be assigned (This is a soft constraint and may be broken if it is impossible to satisfy)")
+parser.add_argument('-u', '--upper-bound', default=16, type=int, help="The maximum number of time cells which a person may be assigned (This is a soft constraint and may be broken if it is impossible to satisfy)")
+parser.add_argument('-f', '--filter', type=str, nargs="*", default=[],help="Users which match this list will be filtered out of the data set before scheduling.")
+parser.add_argument('-n', '--num', default=1, type=int,help="The number of schedules which should be generated.")
 
 args = parser.parse_args()
 
